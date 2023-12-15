@@ -241,10 +241,25 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
+    if args.datasets is None:
+        args.datasets = ['strategyqa', 'wikimultihop']
+
+    if args.k_values is None or args.choose_types is None or args.search_strategies is None or args.datasets is None:
+        args.k_values = [0]
+        args.choose_types = [None]
+        args.search_strategies = ['none']
+
     for dataset in args.datasets:
         for k in args.k_values:
             for choose_type in args.choose_types:
                 for search_strategy in args.search_strategies:
+
+                    print("Running experiment with:")
+                    print("dataset: " + dataset)
+                    print("k: " + str(k))
+                    print("choose_type: " + str(choose_type))
+                    print("search_strategy: " + str(search_strategy))
+
                     params = {
                         'choose_count': k,
                         'choose_type': choose_type,

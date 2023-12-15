@@ -23,25 +23,9 @@ Both these datasets are already in the repository.
 
 Run `python src/make_mapping.py` and `python src/push_vectors.py`
 
-# Baseline
-
-Giving contex_strategy parameter as None runs the baseline (no retrieval).
-
-```
-pipeline = ExperimentPipeline(
-    dataset_file='datasets/2wikimultihop/queries.jsonl',
-    llm=ChatOpenAI(openai_api_key="your_api_key"),
-    embedding_model=OpenAIEmbeddings(openai_api_key="your_api_key"),
-    contex_strategy=None,
-    response_strategy=None,
-    params={'choose_type': 'classic', 'choose_count': 3},
-)
-pipeline.wikimultihop_eval(out_file='results/wikimultihop_results.json', num_todo=50)
-```
-
 # KRAFT Experiments and Evaluation
 
-In experiments.py, we iterative over values of k, the 2 different search strategies (simple and iterative), the 2 different choose_type (i.e. Edge choosing) strategies (classic and nearest neighbor).
+In experiments.py, we iterate over values of k, the 2 different search strategies (simple and iterative), the 2 different choose_type (i.e. Edge choosing strategies: classic and nearest neighbor), and the 2 datasets (StrategyQA and 2WikiMultiHop)
 
 For each, we construct an ExperimentPipeline.
 
@@ -54,6 +38,11 @@ To use the script, you will pass arguments through the command line. The availab
 - `--search_strategies`: List of search strategies (simple, iterative, none)
 - `--datasets`: List of dataset file paths (datasets/)
 - `--num_todo`: Integer representing the number of items to process from each dataset.
+
+#### Baseline
+
+To run the no-retrieval GPT-3.5-Turbo Baseline, use k = 1, choos
+
 
 #### Running the Script
 
@@ -73,23 +62,23 @@ Replace `experiments.py` with the actual name of your script file.
     python script_name.py --k_values 3 \
     --choose_types classic \
     --search_strategies simple \
-    --datasets dataset1.json \
+    --datasets strategyqa \
     --num_todo 50
    ```
 
 2. **Multiple Parameters**:
-   Run the script with multiple `k` values, choose types, and search strategies on two datasets, processing 100 items each:
+   Run the script with multiple `k` values, choose types, and search strategies on two datasets, processing 50 items each:
    ```bash
-    python script_name.py --k_values 3 \
-    --choose_types classic \
-    --search_strategies simple \
-    --datasets dataset1.json \
+    python script_name.py --k_values 3 5 \
+    --choose_types classic nearest_neighbor \
+    --search_strategies simple iterative \
+    --datasets strategyqa wikimultihop \
     --num_todo 50
    ```
 
 #### Output
 
-The script will output the results to files named according to the combination of parameters and dataset names. For example, if you run the script with `k` value of 3, choose type `classic`, search strategy `simple`, on `strategyqa.json` processing 50 items, the output file will be named `results/strategyqa.json_classic_simple_3.json`.
+The script will output the results to files named according to the combination of parameters and dataset names. For example, if you run the script with `k` value of 3, choose type `classic`, search strategy `simple`, on `strategyqa.json` processing 50 items, the output file will be named `results/strategyqa.json_simple_classic_3.json`.
 
 #### Notes
 
