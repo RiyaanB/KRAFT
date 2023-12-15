@@ -1,0 +1,6 @@
+langchain==0.0.263
+pinecone-client==2.2.4
+nltk==3.5
+openai==0.27.8
+tqdm==4.66.1
+qwikidata==0.4.2
