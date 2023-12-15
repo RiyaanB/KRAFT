@@ -226,7 +226,7 @@ search_strategies = {
     'none': None,
 }
 
-datasets = {
+dataset_files = {
     'strategyqa': 'datasets/strategyqa/questions.json',
     'wikimultihop': 'datasets/2wikimultihop/queries.jsonl',
 }
@@ -241,20 +241,25 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    for dataset_file in args.datasets:
+    for dataset in args.datasets:
         for k in args.k_values:
             for choose_type in args.choose_types:
                 for search_strategy in args.search_strategies:
                     params = {
                         'choose_count': k,
                         'choose_type': choose_type,
-                        'max_depth': 3,
-                        'max_branching': 3,
                     }
+
+                    if search_strategy == 'iterative':
+                        params['max_depth'] = 2
+                        params['max_branching'] = 2
 
                     # Create the language model and embedding model here
                     llm = ChatOpenAI(openai_api_key="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", temperature=0.0, model_name='gpt-3.5-turbo')
                     embeddings_model = OpenAIEmbeddings(openai_api_key="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")
+
+                    # Get the dataset file here
+                    dataset_file = dataset_files[dataset]
 
                     # Create and run the pipeline here
                     pipeline = ExperimentPipeline(
@@ -264,10 +269,11 @@ if __name__ == '__main__':
                         contex_strategy=search_strategies[search_strategy],
                         params=params,
                     )
-                    out_file = f'results/{dataset_file}_{choose_type}_{search_strategy}_{k}.json'
                     if 'wikimultihop' in dataset_file:
+                        out_file = f'results/wikimultihop_{choose_type}_{search_strategy}_{k}.json'
                         pipeline.wikimultihop_eval(out_file=out_file, num_todo=args.num_todo)
                     elif 'strategyqa' in dataset_file:
+                        out_file = f'results/strategyqa_{choose_type}_{search_strategy}_{k}.json'
                         pipeline.strategyqa_eval(out_file=out_file, num_todo=args.num_todo)
                     else:
                         raise ValueError("Invalid dataset file: " + dataset_file)

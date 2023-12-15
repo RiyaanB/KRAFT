@@ -49,10 +49,10 @@ For each, we construct an ExperimentPipeline.
 
 To use the script, you will pass arguments through the command line. The available arguments are:
 
-- `--k_values`: List of integer values for k.
-- `--choose_types`: List of choose types.
-- `--search_strategies`: List of search strategies.
-- `--datasets`: List of dataset file paths.
+- `--k_values`: List of integer values for k
+- `--choose_types`: List of choose types (nearest_neighbor, classic)
+- `--search_strategies`: List of search strategies (simple, iterative, none)
+- `--datasets`: List of dataset file paths (datasets/)
 - `--num_todo`: Integer representing the number of items to process from each dataset.
 
 #### Running the Script
@@ -60,28 +60,28 @@ To use the script, you will pass arguments through the command line. The availab
 Here's the basic syntax for running the script from your command line:
 
 ```bash
-python script_name.py --k_values [K_VALUES] --choose_types [CHOOSE_TYPES] --search_strategies [SEARCH_STRATEGIES] --datasets [DATASETS] --num_todo [NUM_TODO]
+python experiments.py --k_values [K_VALUES] --choose_types [CHOOSE_TYPES] --search_strategies [SEARCH_STRATEGIES] --datasets [DATASETS] --num_todo [NUM_TODO]
 ```
 
-Replace `script_name.py` with the actual name of your script file.
+Replace `experiments.py` with the actual name of your script file.
 
 #### Examples
 
 1. **Basic Example**:
    Run the script with a single value for `k`, one choose type, one search strategy, on a single dataset processing 50 items:
    ```bash
-   python script_name.py --k_values 3 --choose_types classic --search_strategies strategy1 --datasets dataset1.json --num_todo 50
+   python script_name.py --k_values 3 --choose_types classic --search_strategies simple --datasets dataset1.json --num_todo 50
    ```
 
 2. **Multiple Parameters**:
    Run the script with multiple `k` values, choose types, and search strategies on two datasets, processing 100 items each:
    ```bash
-   python script_name.py --k_values 3 5 --choose_types classic nearest_neighbor --search_strategies strategy1 strategy2 --datasets dataset1.json dataset2.json --num_todo 100
+   python script_name.py --k_values 3 5 --choose_types classic nearest_neighbor --search_strategies simple iterative --datasets dataset1.json dataset2.json --num_todo 100
    ```
 
 #### Output
 
-The script will output the results to files named according to the combination of parameters and dataset names. For example, if you run the script with `k` value of 3, choose type `classic`, search strategy `strategy1`, on `dataset1.json` processing 50 items, the output file will be named `results/dataset1.json_classic_strategy1_3.json`.
+The script will output the results to files named according to the combination of parameters and dataset names. For example, if you run the script with `k` value of 3, choose type `classic`, search strategy `simple`, on `strategyqa.json` processing 50 items, the output file will be named `results/strategyqa.json_classic_simple_3.json`.
 
 #### Notes
 
