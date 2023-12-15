@@ -286,9 +286,13 @@ if __name__ == '__main__':
                     )
                     if 'wikimultihop' in dataset_file:
                         out_file = f'results/wikimultihop_{search_strategy}_{choose_type}_{k}.json'
+                        if search_strategy == 'none':
+                            out_file = f'results/wikimultihop_{search_strategy}.json'
                         pipeline.wikimultihop_eval(out_file=out_file, num_todo=args.num_todo)
                     elif 'strategyqa' in dataset_file:
                         out_file = f'results/strategyqa_{search_strategy}_{choose_type}_{k}.json'
+                        if search_strategy == 'none':
+                            out_file = f'results/strategyqa_{search_strategy}.json'
                         pipeline.strategyqa_eval(out_file=out_file, num_todo=args.num_todo)
                     else:
                         raise ValueError("Invalid dataset file: " + dataset_file)
