@@ -9,7 +9,7 @@ We use Langchain's Python module for
 
 ## Setup
 
-Run pip install -r requirements
+Run `pip install -r requirements`
 
 # Dataset
 
@@ -21,7 +21,7 @@ Both these datasets are already in the repository.
 
 # Preprocessing
 
-Run python src/make_mapping.py and python src/push_vectors.py
+Run `python src/make_mapping.py` and `python src/push_vectors.py`
 
 # Baseline
 
@@ -41,7 +41,7 @@ pipeline.wikimultihop_eval(out_file='results/wikimultihop_results.json', num_tod
 
 # KRAFT Experiments and Evaluation
 
-In experiments.py, we iterative over values of k and the 2 different edge_traversal strategies.
+In experiments.py, we iterative over values of k, the 2 different search strategies (simple and iterative), the 2 different choose_type (i.e. Edge choosing) strategies (classic and nearest neighbor).
 
 For each, we construct an ExperimentPipeline.
 
@@ -90,4 +90,4 @@ The script will output the results to files named according to the combination o
 
 # Real-time demo
 
-Run streamlit run app.py to run the interactive demo
+Run `streamlit run app.py` to run the interactive demo
