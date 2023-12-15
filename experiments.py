@@ -270,10 +270,10 @@ if __name__ == '__main__':
                         params=params,
                     )
                     if 'wikimultihop' in dataset_file:
-                        out_file = f'results/wikimultihop_{choose_type}_{search_strategy}_{k}.json'
+                        out_file = f'results/wikimultihop_{search_strategy}_{choose_type}_{k}.json'
                         pipeline.wikimultihop_eval(out_file=out_file, num_todo=args.num_todo)
                     elif 'strategyqa' in dataset_file:
-                        out_file = f'results/strategyqa_{choose_type}_{search_strategy}_{k}.json'
+                        out_file = f'results/strategyqa_{search_strategy}_{choose_type}_{k}.json'
                         pipeline.strategyqa_eval(out_file=out_file, num_todo=args.num_todo)
                     else:
                         raise ValueError("Invalid dataset file: " + dataset_file)
