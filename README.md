@@ -70,13 +70,21 @@ Replace `experiments.py` with the actual name of your script file.
 1. **Basic Example**:
    Run the script with a single value for `k`, one choose type, one search strategy, on a single dataset processing 50 items:
    ```bash
-   python script_name.py --k_values 3 --choose_types classic --search_strategies simple --datasets dataset1.json --num_todo 50
+    python script_name.py --k_values 3 \
+    --choose_types classic \
+    --search_strategies simple \
+    --datasets dataset1.json \
+    --num_todo 50
    ```
 
 2. **Multiple Parameters**:
    Run the script with multiple `k` values, choose types, and search strategies on two datasets, processing 100 items each:
    ```bash
-   python script_name.py --k_values 3 5 --choose_types classic nearest_neighbor --search_strategies simple iterative --datasets dataset1.json dataset2.json --num_todo 100
+    python script_name.py --k_values 3 \
+    --choose_types classic \
+    --search_strategies simple \
+    --datasets dataset1.json \
+    --num_todo 50
    ```
 
 #### Output
