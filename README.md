@@ -27,6 +27,7 @@ Run python src/make_mapping.py and python src/push_vectors.py
 
 Giving contex_strategy parameter as None runs the baseline (no retrieval).
 
+```
 pipeline = ExperimentPipeline(
     dataset_file='datasets/2wikimultihop/queries.jsonl',
     llm=ChatOpenAI(openai_api_key="your_api_key"),
@@ -36,6 +37,7 @@ pipeline = ExperimentPipeline(
     params={'choose_type': 'classic', 'choose_count': 3},
 )
 pipeline.wikimultihop_eval(out_file='results/wikimultihop_results.json', num_todo=50)
+```
 
 # KRAFT Experiments and Evaluation
 
