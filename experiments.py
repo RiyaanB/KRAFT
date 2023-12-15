@@ -270,8 +270,8 @@ if __name__ == '__main__':
                         params['max_branching'] = 2
 
                     # Create the language model and embedding model here
-                    llm = ChatOpenAI(openai_api_key="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", temperature=0.0, model_name='gpt-3.5-turbo')
-                    embeddings_model = OpenAIEmbeddings(openai_api_key="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")
+                    llm = ChatOpenAI(openai_api_key="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", temperature=0.0, model_name='gpt-3.5-turbo')
+                    embeddings_model = OpenAIEmbeddings(openai_api_key="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")
 
                     # Get the dataset file here
                     dataset_file = dataset_files[dataset]
@@ -304,8 +304,8 @@ if __name__ == '__main__':
     #             'choose_type': choose_type,
     #             'choose_count': choose_count,
     #         }
-    #         llm = ChatOpenAI(openai_api_key="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", temperature=0.0, model_name='gpt-3.5-turbo')
-    #         embeddings_model = OpenAIEmbeddings(openai_api_key="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")
+    #         llm = ChatOpenAI(openai_api_key="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", temperature=0.0, model_name='gpt-3.5-turbo')
+    #         embeddings_model = OpenAIEmbeddings(openai_api_key="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")
     #         pipeline = ExperimentPipeline(
     #             dataset_file='datasets/strategyqa/questions.json',
     #             # dataset_file='datasets/2wikimultihop/queries.jsonl',

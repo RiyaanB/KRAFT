@@ -52,8 +52,8 @@ def get_chatbot_response(question, edge_traversal, k, search_strategy, response_
     # Your chatbot's logic goes here
     # For example, it could change its behavior based on the edge_traversal strategy, k, and search_strategy
     
-    llm = ChatOpenAI(openai_api_key="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", temperature=0.0, model_name='gpt-3.5-turbo')
-    embeddings_model = OpenAIEmbeddings(openai_api_key="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")
+    llm = ChatOpenAI(openai_api_key="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", temperature=0.0, model_name='gpt-3.5-turbo')
+    embeddings_model = OpenAIEmbeddings(openai_api_key="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")
 
     if search_strategy == build_context_simple:
         info_context = search_strategy(llm, embeddings_model, question, edge_traversal, k)

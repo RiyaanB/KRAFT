@@ -62,6 +62,6 @@ def build_context_simple(llm, embedding_model, question, choose_type='classic', 
                 info_context += f"{edge_label}: {object_label} \n"
     
     # Return the constructed context
-    return info_context
+    return info_context, None
 
 
