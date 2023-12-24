@@ -7,6 +7,12 @@ We use Langchain's Python module for
 1) Prompting OpenAI's ChatGPT-3.5-Turbo model 
 2) Embedding text using OpenAI's Ada-v2 text embedding model
 
+## Example
+
+For the prompt "Who is Christopher Nolan's brother's wife?", with iterative KRAFT, we get the following:
+
+<img width="732" alt="image" src="https://github.com/RiyaanB/KRAFT/assets/15158326/0ba13c79-87dd-4980-afce-1ff12d467252">
+
 ## Setup
 
 Run `pip install -r requirements`
