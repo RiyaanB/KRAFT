@@ -1,4 +1,5 @@
 from src.kraft import *
+import networkx as nx
 
 def build_context_iterative(llm, embedding_model, question, choose_type='classic', choose_count=3, max_depth=2, max_branching=2):
     """
@@ -26,6 +27,7 @@ def build_context_iterative(llm, embedding_model, question, choose_type='classic
     entity_labels = kw.extract_entity_labels(llm, question)
     entity_ids = kw.get_entity_ids(entity_labels)
     info_context = ""
+    info_graph = nx.DiGraph()
 
     # Step 2: Keep a set of processed entities to avoid repeats
     # Also keep a queue of entities yet to process
@@ -51,6 +53,7 @@ def build_context_iterative(llm, embedding_model, question, choose_type='classic
 
         # Step 6: Add the entity to the context
         info_context += f"NEW SUBJECT:  {subject_label}: {description} \n"
+        info_graph.add_node(subject_qid, label=subject_label, description='')
 
         print("Subject: " + subject_label)
 
@@ -72,6 +75,7 @@ def build_context_iterative(llm, embedding_model, question, choose_type='classic
                 if 'time' in object_entity:
                     try:
                         object_label = object_entity['time']
+                        info_graph.add_node('Time', label=object_label, description='')
                         print("Is a time, so didn't add to queue")
                     except:
                         continue
@@ -83,6 +87,8 @@ def build_context_iterative(llm, embedding_model, question, choose_type='classic
                         object_label = kw.get_entity_dict(object_qid)['labels']['en']['value']
                         if object_qid and object_qid not in processed_entities:
                             entity_queue.append((object_qid, depth + 1))
+                            info_graph.add_node(object_qid, label=object_label, description='')
+                            info_graph.add_edge(subject_qid, object_qid, label=edge_label)
                             branch_count += 1
                             print(f"[{subject_label}] Added to queue: {object_qid} ({object_label})")
                         else:
@@ -98,4 +104,4 @@ def build_context_iterative(llm, embedding_model, question, choose_type='classic
                 info_context += f"{edge_label}: {object_label} \n"
 
     # Return the constructed context
-    return info_context
+    return info_context, info_graph
